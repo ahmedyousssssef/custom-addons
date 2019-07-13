@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="hr_employee_form_view_inherit">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='public']/group/group" position="inside">
+                        <field name="employee_insurance_num"/>
+                </xpath>
+                <xpath expr="//group[@name='active_group']" position="after">
+                    <group string="Resignation" attrs="{'invisible':[('active','=',True)]}">
+                        <label for="resignation_date" attrs="{'invisible':[('active','=',True)]}"/>
+                        <div>
+                            <field name="resignation_date" attrs="{'invisible':[('active','=',True)],'required' : [('active', '=', False)]}"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hr_employee_search_view_inherit">
+            <field name="name">hr.employee.search.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                        <field name="employee_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hr_employee_tree_view_inherit">
+            <field name="name">hr.employee.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                        <field name="employment" string="Hiring Date"/>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="after">
+                        <field name="work_location"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
